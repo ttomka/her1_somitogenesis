@@ -219,7 +219,7 @@ def get_matrix(frame, pts, x, y, species):
 
 def osc_delay_dependence(opar, delay, delay_range, eps_range, eqns, x, y, 
                          params, bc, trange, step, species, eps_spans, 
-                         history):
+                         history=None):
     X = {} 
     for eps in eps_range:
         params['e'] = eps
@@ -231,7 +231,8 @@ def osc_delay_dependence(opar, delay, delay_range, eps_range, eqns, x, y,
             dde = run_sim(eqns, x, y, params, None, None, 
                           None, None, bc, history=history)
             pts = sample_pts(dde, trange, step)
-            X[eps]['sync'].append(get_avg_pearsonr(pts, x, y, species))
+            if x*y>1:
+                X[eps]['sync'].append(get_avg_pearsonr(pts, x, y, species))
             for op in opar:
                 vals = []
                 for c in range(1, x*y + 1):
