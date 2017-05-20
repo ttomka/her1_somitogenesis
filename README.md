@@ -1,6 +1,8 @@
 # her1_somitogenesis
 Author: Tomas Tomka
+
 Part of my Master's thesis at ETH Zurich, D-BSSE
+
 Supervised by Dr. Marcelo Boareto and Prof. Dr. Dagmar Iber
 
 The code is structured in two files:
