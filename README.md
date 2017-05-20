@@ -1,7 +1,7 @@
 # her1_somitogenesis
 Author: Tomas Tomka
 
-Part of my Master's thesis at ETH Zurich, D-BSSE
+Part of my Master's thesis at ETH Zurich, D-BSSE, handed in on May 15, 2017 
 
 Supervised by Dr. Marcelo Boareto and Prof. Dr. Dagmar Iber
 
