@@ -21,8 +21,6 @@ label = {'p': 'Her1', 'm': 'Her1 mRNA',
 """ plot one frame (concentration in cells of tissue) """
 def plot_snapshot(a, clabel=None, clim=None, cbar=False, ax=None, 
                   cmap='gist_ncar', t=None, x=None, o='vertical'):
-    # k = 0.3 
-    # plt.figure(figsize=(k*30,k*5))
     if not ax:
         pc = plt.pcolor(a, cmap=cmap)
         plt.gca().set_aspect('equal')
@@ -217,6 +215,9 @@ def get_matrix(frame, pts, x, y, species):
             k += 1
     return M, [np.min(M), np.max(M)]
 
+""" monitor the oscillation measures for varied delay values; 
+    evaluate in which regions sync_spans the synchronization (or oscillation
+    for uncoupled case) condition is satisfied """
 def osc_delay_dependence(opar, delay, delay_range, eps_range, eqns, x, y, 
                          params, bc, trange, step, species, eps_spans, 
                          history=None):
@@ -260,7 +261,7 @@ def osc_delay_dependence(opar, delay, delay_range, eps_range, eqns, x, y,
         sync_spans.append(deepcopy(span))
     return X, sync_spans
 
-""" divide most posterior column of cells"""
+""" divide most posterior column of cells """
 def tail_growth(history, x, y, eqns):
     hist_new = {}
     for k in range(x*y):
@@ -275,6 +276,7 @@ def tail_growth(history, x, y, eqns):
                                                                   k*(y+1)+2)])
     return hist_new
 
+""" remove most anterior column of cells """
 def segmentation(history, x, y, eqns):
     hist_new = {}
     for k in range(x*(y-1)):
@@ -285,6 +287,8 @@ def segmentation(history, x, y, eqns):
     hist_new['t'] = deepcopy(history['t'])
     return hist_new
 
+""" record a kymograph of the travelling waves from the previously sampled
+    series of tissue snapshots """
 def kymograph(times, series, y, cmap, yticks, clim=None, ax=None):
     yticksmid = [x+0.5 for x in yticks]
     G = np.empty((len(times),y))
